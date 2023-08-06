@@ -6,7 +6,7 @@ function logSubmit(event) {
 function setDogImage(event) {
     fetchDogPicture().then((pic)=>{
         image.setAttribute("src", pic);
-        dogName.textContent = `${pic.spplit('/')[4]}`;
+        dogName.textContent = `${pic.split('/')[4]}`;
      }
     );
     event.preventDefault();
