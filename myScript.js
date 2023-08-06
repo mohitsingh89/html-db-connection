@@ -6,6 +6,7 @@ function logSubmit(event) {
 function setDogImage(event) {
     fetchDogPicture().then((pic)=>{
         image.setAttribute("src", pic);
+        dogName.textContent = `${pic.spplit('/')[4]}`;
      }
     );
     event.preventDefault();
@@ -14,6 +15,7 @@ function setDogImage(event) {
    const form = document.getElementById("form");
    const log = document.getElementById("log");
    const image = document.getElementById("image");
+   const dogName = document.getElementById("dogName");
 
    if(!log){
        console.log("log element not found!!!!!!!!!!");
