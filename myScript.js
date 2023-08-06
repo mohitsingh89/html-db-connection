@@ -1,28 +1,43 @@
 function logSubmit(event) {
     log.textContent = `Form Submitted! Timestamp: ${event.timeStamp}`;
     event.preventDefault();
-   }
-   const form = document.getElementById("form");
+}
 
+function setDogImage(event) {
+    fetchDogPicture().then((pic)=>{
+        image.setAttribute("src", pic);
+     }
+    );
+    event.preventDefault();
+}
+
+   const form = document.getElementById("form");
    const log = document.getElementById("log");
+   const image = document.getElementById("image");
+
    if(!log){
        console.log("log element not found!!!!!!!!!!");
    }
+   if(!image){
+    console.log("image element not found!!!!!!!!!!");
+}
    if(!form){
        console.log("Form element not found!!!!!!!!!!");
    }else
    {
-       form.addEventListener("submit", logSubmit);
+      // form.addEventListener("submit", logSubmit);
+       form.addEventListener("submit", setDogImage);
    }
 
-function fetchData() {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => response.json())
-      .then((json) => takeData(json));
-  }
-  
-function takeData(val) {
-    return val.slice(1, 11);
+ async function fetchDogPicture() {
+    const response =await fetch("https://dog.ceo/api/breeds/image/random");
+    const json = await response.json();
+    console.log(json);
+    return json?.message;
 }
-  
-fetchData();
+
+fetchDogPicture().then((pic)=>{
+    console.log(pic);
+ }
+);
+ 
