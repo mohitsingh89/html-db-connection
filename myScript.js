@@ -43,3 +43,49 @@ fetchDogPicture().then((pic)=>{
  }
 );
  
+
+// LIST 
+ const localStorageItems = JSON.parse(localStorage.getItem('items')) || []
+    // Load items from local storage
+    window.onload = function () {
+        const itemsCopy = [...localStorageItems];
+        itemsCopy.forEach(function (item) {
+            addItemToList(item);
+        });
+    };
+
+    // Add item to the list
+    function addItem() {
+        var item = document.getElementById('inputItem').value;
+        if (item) {
+            addItemToList(item);
+            saveItem(item);
+        }
+        document.getElementById('inputItem').value = '';
+    }
+
+    // Add item to the list element
+    function addItemToList(item) {
+        var list = document.getElementById('list');
+        var listItem = document.createElement('li');
+        listItem.innerHTML = '<input type="checkbox" onchange="removeItem(\'' + item + '\')"><label>' + item + '</label>';
+        list.appendChild(listItem);
+    }
+
+    // Save item to local storage
+    function saveItem(item) {
+        var items = JSON.parse(localStorage.getItem('items')) || [];
+        items.push(item);
+        localStorage.setItem('items', JSON.stringify(items));
+    }
+
+    // Remove item from the list and local storage
+    function removeItem(item) {
+        var items = JSON.parse(localStorage.getItem('items')) || [];
+        var index = items.indexOf(item);
+        if (index !== -1) {
+            items.splice(index, 1);
+            localStorage.setItem('items', JSON.stringify(items));
+            location.reload();
+        }
+    }
