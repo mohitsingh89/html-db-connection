@@ -68,7 +68,7 @@ fetchDogPicture().then((pic)=>{
     function addItemToList(item) {
         var list = document.getElementById('list');
         var listItem = document.createElement('li');
-        listItem.innerHTML = '<input type="checkbox" onchange="removeItem(\'' + item + '\')"><label>' + item + '</label>';
+        listItem.innerHTML = '<input type="checkbox"  onchange="removeItem(\'' + item + '\')"><label style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 200px;">' + item + '</label><br><br><br>';
         list.appendChild(listItem);
     }
 
